@@ -6,6 +6,7 @@ const fontNames = {
 const theme = {
   colors: {
     white: '#fff',
+    transwhite: 'rgba(255,255,255, 0.5)',
     black: '#000',
     primary: '#f0f5f2',
     accentprimary: '#829d93',
