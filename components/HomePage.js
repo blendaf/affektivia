@@ -122,7 +122,7 @@ const TextBox = styled.div`
   display: flex;
   width: 50%;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 `
 const TextBox__Title = styled.div`
@@ -158,9 +158,9 @@ const Input = styled.label`
 const ShortInput = styled.input`
   border: 1px solid #ddd;
   border-radius: 4px;
-  height: 35px;
   font-size: 15px;
   font-weight: 100;
+  padding: 10px 0;
   padding-left: 10px;
   color: #ddd;
   transition: all 0.5s ease;
@@ -179,6 +179,7 @@ const LongInput = styled.textarea`
   height: 70px;
   font-size: 15px;
   font-weight: 100;
+  padding-top: 10px;
   padding-left: 10px;
   color: #ddd;
   transition: all 0.5s ease;
