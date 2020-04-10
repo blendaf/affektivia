@@ -14,6 +14,9 @@ const Nav = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  @media only screen and (max-width: 400px) {
+    left: auto;
+  }
 `
 
 const Ul = styled.ul`
@@ -23,13 +26,32 @@ const Ul = styled.ul`
   padding-left: 10px;
   list-style: none;
 
-  .link {
-    position: relative;
-    text-decoration: none;
-    color: ${({ theme }) => theme.colors.accentprimary};
+  @media only screen and (max-width: 600px) {
+    width: auto;
   }
 
-  .link:after {
+  @media only screen and (max-width: 400px) {
+    padding-left: 0px;
+  }
+`
+
+const Li = styled.li`
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  display: inline-block;
+  padding: 0px 15px;
+  color: ${({ theme }) => theme.colors.accentprimary};
+`
+
+const Link = styled.a`
+  position: relative;
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.accentprimary};
+  @media only screen and (max-width: 400px) {
+    font-size: 20px;
+  }
+  :after {
     content: '';
     position: absolute;
     width: 0;
@@ -42,20 +64,11 @@ const Ul = styled.ul`
     -webkit-transition: width 0.2s ease;
   }
 
-  .link:hover:after {
+  :hover:after {
     width: 100%;
     left: 0;
     background: ${({ theme }) => theme.colors.accentprimary};
   }
-`
-
-const Li = styled.li`
-  position: relative;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 30px;
-  display: inline-block;
-  padding: 0px 15px;
-  color: ${({ theme }) => theme.colors.accentprimary};
 `
 
 const Header = styled.div`
@@ -76,19 +89,31 @@ const Header = styled.div`
 const Title = styled.div`
   font-size: 80px;
   color: ${({ theme }) => theme.colors.accentprimary};
+  @media only screen and (max-width: 600px) {
+    font-size: 60px;
+  }
+  @media only screen and (max-width: 400px) {
+    font-size: 40px;
+  }
 `
 
 const Section = styled.div`
   display: flex;
-  flex-direction: ${(props) => (props.row ? 'row' : 'column')};
+  flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  height: 500px;
+  height: ${(props) => (props.row ? '500px' : 'auto')};
   width: 100%;
   color: ${(props) =>
     props.second ? props.theme.colors.black : props.theme.colors.white};
   background-color: ${(props) =>
     props.second ? props.theme.colors.white : props.theme.colors.accentprimary};
+  padding: 20px 0;
+
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+    justify-content: center;
+  }
 `
 
 const Footer = styled.div`
@@ -120,10 +145,13 @@ const Box = styled.div`
 
 const TextBox = styled.div`
   display: flex;
-  width: 50%;
+  flex: 0.5;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  @media only screen and (max-width: 600px) {
+    text-align: center;
+  }
 `
 const TextBox__Title = styled.div`
   font-size: 30px;
@@ -135,17 +163,30 @@ const TextBox__Text = styled.div`
 
 const InputForm = styled.div`
   display: flex;
-  width: 50%;
+  flex: 0.5;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 0 100px;
+
+  @media only screen and (max-width: 800px) {
+    width: 100%;
+    padding: 0 50px;
+  }
+  @media only screen and (max-width: 600px) {
+    padding: 0px;
+    width: 100%;
+  }
 `
 
 const InputRow = styled.div`
   display: flex;
   width: 100%;
   padding: 10px 0;
+  @media only screen and (max-width: 400px) {
+    flex-direction: column;
+    padding: 0;
+  }
 `
 
 const Input = styled.label`
@@ -162,7 +203,7 @@ const ShortInput = styled.input`
   font-weight: 100;
   padding: 10px 0;
   padding-left: 10px;
-  color: #ddd;
+  color: ${({ theme }) => theme.colors.black};
   transition: all 0.5s ease;
   :hover {
     border-color: #aaa;
@@ -171,6 +212,13 @@ const ShortInput = styled.input`
   :focus {
     outline: none;
     border-color: ${({ theme }) => theme.colors.accentprimary};
+  }
+  ::placeholder {
+    color: #aaa;
+  }
+
+  @media only screen and (max-width: 400px) {
+    margin: 10px 0;
   }
 `
 const LongInput = styled.textarea`
@@ -181,7 +229,7 @@ const LongInput = styled.textarea`
   font-weight: 100;
   padding-top: 10px;
   padding-left: 10px;
-  color: #ddd;
+  color: ${({ theme }) => theme.colors.black};
   transition: all 0.5s ease;
   :hover {
     border-color: #aaa;
@@ -189,6 +237,13 @@ const LongInput = styled.textarea`
   :focus {
     outline: none;
     border-color: ${({ theme }) => theme.colors.accentprimary};
+  }
+
+  ::placeholder {
+    color: #aaa;
+  }
+  @media only screen and (max-width: 400px) {
+    margin-top: 10px;
   }
 `
 const SubmitButton = styled.div`
@@ -210,32 +265,24 @@ export default () => (
       <Nav>
         <Ul>
           <Li>
-            <a className="link" href="#">
-              Hem
-            </a>
+            <Link href="#">Hem</Link>
           </Li>
           <Li>
-            <a className="link" href="#">
-              Arbete
-            </a>
+            <Link href="#">Arbete</Link>
           </Li>
           <Li>
-            <a className="link" href="#">
-              Kontakt
-            </a>
+            <Link href="#">Kontakt</Link>
           </Li>
         </Ul>
       </Nav>
       <Title>Affektivia.se</Title>
     </Header>
-    <Section second row>
-      Någon typ av info etc
-    </Section>
+    <Section second>Någon typ av info etc</Section>
     <Section>Någon typ av info etc</Section>
-    <Section second row>
+    <Section second>
       <TextBox>
         <TextBox__Title>Vill du veta mer?</TextBox__Title>
-        <TextBox__Text>Kontakt mig via formuläret.</TextBox__Text>
+        <TextBox__Text>Kontakta mig via formuläret.</TextBox__Text>
       </TextBox>
 
       <InputForm action="https://Formspree.io/mgelzazl" method="POST">
